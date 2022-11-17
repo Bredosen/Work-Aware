@@ -1,7 +1,11 @@
 package me.work.aware;
 
+import com.github.kwhat.jnativehook.GlobalScreen;
 import me.work.aware.handlers.Console;
 import me.work.aware.managers.DataManager;
+import me.work.aware.managers.DisplayManager;
+import me.work.aware.managers.GlobalHookManager;
+import me.work.aware.types.DisplayType;
 
 /**
  * @author Anders B. Hansen
@@ -10,7 +14,10 @@ import me.work.aware.managers.DataManager;
  */
 public final class WorkAware {
 
+    // WorkAware name.
     public final static String NAME = "WorkAware";
+
+    // WorkAware version.
     public final static double VERSION = 1.0D;
 
     //<editor-fold desc="Singleton & Constructor">
@@ -62,12 +69,16 @@ public final class WorkAware {
      */
     public void initialize() {
         DataManager.registerData();
+        GlobalHookManager.register();
+        DisplayManager.register();
     }
 
     /**
      * When program gets terminated.
      */
     public void terminate() {
-
+        DisplayManager.unRegister();
+        GlobalHookManager.unRegister();
+        DataManager.unRegisterData();
     }
 }

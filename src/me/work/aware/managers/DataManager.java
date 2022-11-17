@@ -1,5 +1,7 @@
 package me.work.aware.managers;
 
+import me.work.aware.handlers.Console;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -9,8 +11,13 @@ public final class DataManager {
      * Register dataManager, creating files, loading files.
      */
     public static void registerData() {
+        Console.print("Registering Data");
         registerWorkAwareRoot();
         registerSettings();
+    }
+
+    public static void unRegisterData() {
+        Console.print("UnRegistering Data");
     }
 
     private static void registerSettings() {
